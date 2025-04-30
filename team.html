@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organigrama Ejecutivo | Nantli Quantum Technologies</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" href="./imgs/2-min.png" type="image/png">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --secondary: #1e293b;
+            --accent: #7c3aed;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --gold: #f59e0b;
+            --shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
+        }
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--primary);
+            color: var(--text-primary);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(124, 58, 237, 0.15) 0%, transparent 25%),
+                radial-gradient(circle at 80% 70%, rgba(245, 158, 11, 0.15) 0%, transparent 25%),
+                linear-gradient(to bottom, #0b0f19, #141b2d);
+            background-attachment: fixed;
+        }
+        
+        .org-container {
+            width: 95%;
+            max-width: 1200px;
+            padding: 2rem 0;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .org-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            padding: 0 1rem;
+        }
+        
+        .logo-container {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+        
+        .company-name {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin: 0;
+            background: linear-gradient(90deg, var(--gold), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        
+        .company-slogan {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+            margin-top: 0;
+            font-style: italic;
+            position: relative;
+            display: inline-block;
+            padding: 0 1.5rem;
+        }
+        
+        .company-slogan::before,
+        .company-slogan::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 1rem;
+            height: 1px;
+            background: var(--text-secondary);
+            opacity: 0.3;
+        }
+        
+        .company-slogan::before {
+            left: 0;
+        }
+        
+        .company-slogan::after {
+            right: 0;
+        }
+        
+        .org-subtitle {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-top: 2rem;
+            position: relative;
+            display: inline-block;
+            padding: 0 2rem;
+        }
+        
+        .org-subtitle::before, .org-subtitle::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 1.5rem;
+            height: 1px;
+            background: var(--text-secondary);
+            opacity: 0.5;
+        }
+        
+        .org-subtitle::before {
+            left: 0;
+        }
+        
+        .org-subtitle::after {
+            right: 0;
+        }
+        
+        .org-chart {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+        
+        .ceo-level {
+            position: relative;
+            margin-bottom: 4rem;
+            z-index: 3;
+        }
+        
+        .ceo-card {
+            background: var(--secondary);
+            border-radius: 12px;
+            padding: 2rem;
+            width: 300px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            border-top: 4px solid var(--gold);
+            transition: transform 0.3s;
+            position: relative;
+            z-index: 2;
+            background: linear-gradient(145deg, #1e293b, #1a2435);
+        }
+        
+        .ceo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+        }
+        
+        .management-level {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .management-card {
+            background: var(--secondary);
+            border-radius: 10px;
+            padding: 1.5rem;
+            width: 250px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            border-top: 3px solid var(--accent);
+            transition: transform 0.3s;
+            background: linear-gradient(145deg, #1e293b, #1a2435);
+        }
+        
+        .management-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+        
+        .team-level {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .team-card {
+            background: var(--secondary);
+            border-radius: 8px;
+            padding: 1.2rem;
+            width: 200px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: transform 0.3s;
+            background: linear-gradient(145deg, #1e293b, #1a2435);
+        }
+        
+        .team-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .employee-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+            color: var(--text-primary);
+        }
+        
+        .ceo-card .employee-name {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .employee-position {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+        
+        .ceo-card .employee-position {
+            font-size: 0.95rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+        
+        .ceo-card .employee-position::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--gold), var(--accent));
+        }
+        
+        .employee-bio {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            line-height: 1.6;
+            margin-bottom: 1.2rem;
+            font-style: italic;
+        }
+        
+        .cv-button {
+            background: linear-gradient(90deg, var(--accent), #6d28d9);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 0.5rem;
+        }
+        
+        .cv-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(124, 58, 237, 0.4);
+        }
+        
+        .connectors {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .connector-line {
+            position: absolute;
+            background: var(--accent);
+            opacity: 0.3;
+        }
+        
+        .connector-ceo {
+            width: 2px;
+            height: 80px;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .connector-management {
+            height: 2px;
+            width: 80%;
+            top: 50%;
+            left: 10%;
+        }
+        
+        .connector-team {
+            width: 2px;
+            height: 40px;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        /* Efectos decorativos */
+        .particle {
+            position: fixed;
+            background: rgba(124, 58, 237, 0.3);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        /* Versión móvil */
+        @media (max-width: 768px) {
+            .company-name {
+                font-size: 1.8rem;
+            }
+            
+            .company-slogan {
+                font-size: 0.9rem;
+                padding: 0 1rem;
+            }
+            
+            .company-slogan::before,
+            .company-slogan::after {
+                width: 0.8rem;
+            }
+            
+            .org-subtitle {
+                font-size: 0.9rem;
+                padding: 0 1.5rem;
+            }
+            
+            .org-subtitle::before,
+            .org-subtitle::after {
+                width: 1rem;
+            }
+            
+            /* Reorganización completa para móvil */
+            .org-chart {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 2rem;
+            }
+            
+            .ceo-level {
+                margin-bottom: 0;
+                order: 1;
+            }
+            
+            .ceo-card {
+                width: 90%;
+                max-width: 280px;
+                padding: 1.5rem;
+                margin: 0 auto;
+            }
+            
+            .management-level {
+                flex-direction: column;
+                align-items: center;
+                gap: 2rem;
+                order: 2;
+                margin-bottom: 0;
+            }
+            
+            .management-card {
+                width: 90%;
+                max-width: 240px;
+                padding: 1.2rem;
+            }
+            
+            .team-level {
+                flex-direction: column;
+                align-items: center;
+                gap: 2rem;
+                order: 3;
+            }
+            
+            .team-card {
+                width: 90%;
+                max-width: 220px;
+                padding: 1rem;
+            }
+            
+            /* Reorganización de conectores para móvil */
+            .connectors {
+                display: none;
+            }
+            
+            /* Nuevos conectores verticales para móvil */
+            .ceo-level::after,
+            .management-card::after {
+                content: '';
+                display: block;
+                width: 2px;
+                height: 40px;
+                background: var(--accent);
+                opacity: 0.3;
+                margin: 0 auto;
+            }
+            
+            .ceo-level::after {
+                margin-top: 1rem;
+            }
+            
+            .management-card::after {
+                margin-top: 1rem;
+            }
+            
+            /* Ajustes de texto para móvil */
+            .employee-name {
+                font-size: 1rem;
+            }
+            
+            .ceo-card .employee-name {
+                font-size: 1.2rem;
+            }
+            
+            .employee-position {
+                font-size: 0.8rem;
+            }
+            
+            .employee-bio {
+                font-size: 0.8rem;
+            }
+        }
+        
+        /* Ajustes para pantallas muy pequeñas */
+        @media (max-width: 480px) {
+            .company-name {
+                font-size: 1.5rem;
+            }
+            
+            .ceo-card {
+                max-width: 260px;
+            }
+            
+            .management-card {
+                max-width: 220px;
+            }
+            
+            .team-card {
+                max-width: 200px;
+            }
+            
+            /* Ajuste de espaciado */
+            .org-chart {
+                gap: 1.5rem;
+            }
+            
+            .ceo-level::after,
+            .management-card::after {
+                height: 30px;
+            }
+        }
+        
+        /* Animaciones */
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(20px);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="org-container">
+        <div class="org-header">
+            <div class="logo-container">
+                <h1 class="company-name">NANTLI QUANTUM TECHNOLOGIES</h1>
+            </div>
+            <p class="org-subtitle">Estructura Interna</p>
+        </div>
+        
+        <div class="org-chart">
+            <!-- Conectores -->
+            <div class="connectors">
+                <div class="connector-line connector-ceo"></div>
+                <div class="connector-line connector-management"></div>
+                <div class="connector-line connector-team" style="left: 20%;"></div>
+                <div class="connector-line connector-team" style="left: 50%;"></div>
+                <div class="connector-line connector-team" style="left: 80%;"></div>
+            </div>
+            
+            <!-- CEO -->
+            <div class="ceo-level">
+                <div class="ceo-card">
+                    <h2 class="employee-name">Ángel Samuel Reséndiz González</h2>
+                    <p class="employee-position">CEO & Fundador</p>
+                    <p class="employee-bio">Visionario líder con una trayectoria excepcional en la creación de soluciones tecnológicas innovadoras. Fundador de Nantli Quantum Technologies, estableciendo los más altos estándares de excelencia.</p>
+                    <a href="./files/CEO-CV.pdf" class="cv-button" download="CV_Angel_Resendiz.pdf">Descargar CV</a>
+                </div>
+            </div>
+            
+            <!-- Nivel de Dirección -->
+            <div class="management-level">
+                <div class="management-card">
+                    <h2 class="employee-name">Mauricio Márquez López</h2>
+                    <p class="employee-position">CTO / Chief Technology Officer</p>
+                    <p class="employee-bio">Experto en metodologías ágiles y gobernanza de datos. Egresado del IPN y estudiante de ESCOM. Lidera la estrategia tecnológica con enfoque en innovación y calidad.</p>
+                </div>
+                
+                <div class="management-card">
+                    <h2 class="employee-name">Moisés Pacheco Pérez</h2>
+                    <p class="employee-position">CSO / Chief Security Officer</p>
+                    <p class="employee-bio">Experto en ciberseguridad egresado del IPN con amplia experiencia en auditorías y pentesting. Especializado en identificar y corregir vulnerabilidades en sistemas complejos.</p>
+                </div>
+            </div>
+            
+            <!-- Equipo -->
+            <div class="team-level">
+                <div class="team-card">
+                    <h2 class="employee-name">Abner Atlai López Calderón</h2>
+                    <p class="employee-position">Web Developer</p>
+                    <p class="employee-bio">Egresado del IPN y estudiante de ESCOM. Especialista en desarrollo web con enfoque en arquitecturas robustas y soluciones escalables.</p>
+                </div>
+                
+                <div class="team-card">
+                    <h2 class="employee-name">Alfredo Hermesdorf Cortazar</h2>
+                    <p class="employee-position">Systems Developer | DevOps</p>
+                    <p class="employee-bio">Egresado del IPN y estudiante de ESIME. Combina conocimientos multidisciplinarios con el desarrollo para soluciones integrales.</p>
+                </div>
+                
+                <div class="team-card">
+                    <h2 class="employee-name">Dayan Mora</h2>
+                    <p class="employee-position">Front-End Developer</p>
+                    <p class="employee-bio">Egresado del IPN y estudiante de ESCOM. Especialista en interfaces de usuario que combinan diseño atractivo con funcionalidad robusta.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Efecto de partículas para el fondo
+        document.addEventListener('DOMContentLoaded', function() {
+            const colors = ['rgba(124, 58, 237, 0.3)', 'rgba(245, 158, 11, 0.3)', 'rgba(75, 192, 192, 0.3)'];
+            
+            function createParticle() {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Tamaño aleatorio entre 2px y 6px
+                const size = Math.random() * 4 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Posición aleatoria en la pantalla
+                particle.style.left = `${Math.random() * 100}vw`;
+                particle.style.top = `${Math.random() * 100}vh`;
+                
+                // Color aleatorio
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                
+                // Animación
+                const duration = Math.random() * 20 + 10;
+                particle.style.animation = `float ${duration}s linear infinite`;
+                
+                document.body.appendChild(particle);
+                
+                // Eliminar después de la animación para evitar acumulación
+                setTimeout(() => {
+                    particle.remove();
+                }, duration * 1000);
+            }
+            
+            // Crear múltiples partículas
+            for (let i = 0; i < 30; i++) {
+                createParticle();
+            }
+            
+            // Crear nuevas partículas periódicamente
+            setInterval(createParticle, 2000);
+        });
+    </script>
+</body>
+</html>
