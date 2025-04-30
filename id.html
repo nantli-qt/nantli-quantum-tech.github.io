@@ -1,0 +1,1684 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Innovación y Desarrollo | Seguridad Informática y Soluciones Tecnológicas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0a192f;
+            --secondary: #172a45;
+            --accent: #64ffda;
+            --text-primary: #ccd6f6;
+            --text-secondary: #8892b0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Calibri', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        /* Particle background */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            opacity: 0.3;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, rgba(10, 25, 47, 0.9) 0%, rgba(23, 42, 69, 0.9) 100%);
+            backdrop-filter: blur(10px);
+            padding: 1rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .logo-text {
+            font-size: 1.2rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--accent) 0%, #4facfe 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            white-space: nowrap;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.3rem 0;
+            font-size: 0.9rem;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 2rem 5%;
+            margin-top: 60px;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 100%;
+            z-index: 1;
+            width: 100%;
+        }
+        
+        .hero-subtitle {
+            color: var(--accent);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+        
+        .hero-title {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+            background: linear-gradient(90deg, #ffffff 0%, var(--text-secondary) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero-description {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            max-width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: transparent;
+            color: var(--accent);
+            padding: 0.7rem 1.5rem;
+            border: 1px solid var(--accent);
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            margin: 0.5rem;
+        }
+        
+        .cta-button:hover {
+            background: rgba(100, 255, 218, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(100, 255, 218, 0.1);
+        }
+        
+        .secondary-button {
+            background: var(--accent);
+            color: var(--primary);
+            border: 1px solid var(--accent);
+        }
+        
+        .secondary-button:hover {
+            background: transparent;
+            color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(100, 255, 218, 0.1);
+        }
+        
+        /* Floating elements */
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(40px);
+            opacity: 0.5;
+            z-index: 0;
+            display: none; /* Ocultamos en móvil para mejor rendimiento */
+        }
+        
+        .element-1 {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, #64ffda 0%, #4facfe 100%);
+            top: 20%;
+            right: 10%;
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        .element-2 {
+            width: 250px;
+            height: 250px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            bottom: 10%;
+            left: 10%;
+            animation: float 10s ease-in-out infinite;
+            animation-delay: 1s;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+        }
+        
+        /* Sections */
+        section {
+            padding: 4rem 5%;
+            position: relative;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, var(--accent) 50%, transparent 100%);
+        }
+        
+        .section-subtitle {
+            color: var(--accent);
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        /* I+D Section */
+        .r-d-section {
+            background: linear-gradient(135deg, rgba(10, 25, 47, 0.9) 0%, rgba(23, 42, 69, 0.9) 100%);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .r-d-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(100, 255, 218, 0.05) 0%, transparent 70%);
+            z-index: -1;
+            animation: rotate 30s linear infinite;
+        }
+        
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        
+        .project-card {
+            background: var(--secondary);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-left: 3px solid var(--accent);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(100, 255, 218, 0.2);
+        }
+        
+        .project-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(100, 255, 218, 0.03) 0%, transparent 100%);
+            z-index: 0;
+        }
+        
+        .project-title {
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+            color: var(--accent);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .project-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .project-description {
+            color: var(--text-primary);
+            line-height: 1.6;
+            margin-bottom: 1.2rem;
+            position: relative;
+            z-index: 1;
+            font-size: 0.95rem;
+        }
+        
+        .project-highlights {
+            margin: 1.2rem 0;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .highlight-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.8rem;
+        }
+        
+        .highlight-icon {
+            color: var(--accent);
+            margin-right: 0.8rem;
+            font-size: 1rem;
+            margin-top: 3px;
+        }
+        
+        .highlight-text {
+            color: var(--text-primary);
+            flex: 1;
+            font-size: 0.9rem;
+        }
+        
+        .collaboration-banner {
+            background: linear-gradient(135deg, rgba(100, 255, 218, 0.1) 0%, rgba(23, 42, 69, 0.8) 100%);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            margin: 2rem 0;
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .collaboration-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" fill="none" stroke="%2364ffda" stroke-width="0.5" stroke-dasharray="5,5"><path d="M0,0 L100,100 M100,0 L0,100"/></svg>');
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .collaboration-text {
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .collaboration-hint {
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* PDF Viewer */
+        .pdf-viewer-container {
+            margin-top: 2rem;
+            background: linear-gradient(135deg, rgba(10, 25, 47, 0.9) 0%, rgba(23, 42, 69, 0.9) 100%);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            text-align: center;
+        }
+        
+        .pdf-viewer-container h4 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .pdf-viewer-container embed {
+            height: 400px;
+            width: 100%;
+            border-radius: 5px;
+            border: none;
+        }
+        
+        .pdf-download {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.7rem 1.5rem;
+            background: var(--accent);
+            color: var(--primary);
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .pdf-download:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(100, 255, 218, 0.3);
+        }
+        
+        /* Publications */
+        .publications-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .publication-card {
+            background: var(--secondary);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            width: 100%;
+        }
+        
+        .publication-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(100, 255, 218, 0.2);
+        }
+        
+        .publication-preview {
+            height: 250px;
+            background: linear-gradient(135deg, #0a192f 0%, #172a45 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .publication-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            opacity: 0.9;
+            padding: 1rem;
+            background: white;
+        }
+        
+        .publication-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(100, 255, 218, 0.1) 0%, transparent 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .publication-overlay i {
+            font-size: 2.5rem;
+            color: var(--accent);
+            opacity: 0.7;
+        }
+        
+        .publication-info {
+            padding: 1.2rem;
+        }
+        
+        .publication-title {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+        
+        .publication-status {
+            display: inline-block;
+            padding: 0.2rem 0.7rem;
+            background: rgba(100, 255, 218, 0.1);
+            color: var(--accent);
+            border-radius: 20px;
+            font-size: 0.75rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        .publication-description {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+        
+        /* Legal Notice */
+        .legal-notice {
+            max-width: 70%;
+            margin: 2rem auto;
+            padding: 1.5rem;
+            background: linear-gradient(to right, #f8f8f8, #ffffff);
+            border-left: 4px solid #e74c3c;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            font-family: 'Georgia', serif;
+            color: #333;
+            text-align: center;
+            position: relative;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .legal-notice-icon {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #e74c3c;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+            box-shadow: 0 2px 8px rgba(231, 76, 60, 0.4);
+        }
+        
+        .legal-notice h3 {
+            color: #e74c3c;
+            margin-top: 15px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 1.1rem;
+        }
+        
+        .legal-notice p {
+            line-height: 1.5;
+            margin: 15px 0;
+            font-size: 0.9rem;
+        }
+        
+        .legal-notice-footer {
+            background: #f1f1f1;
+            padding: 0.8rem;
+            border-radius: 4px;
+            font-style: italic;
+            font-size: 0.8rem;
+            border: 1px dashed #ccc;
+        }
+        
+       /* Estilos Futuristas para el Footer */
+.quantum-footer {
+    background: linear-gradient(135deg, #0a0e17 0%, #1a1a2e 100%);
+    padding: 4rem 5% 2rem;
+    position: relative;
+    overflow: hidden;
+    border-top: 1px solid rgba(65, 105, 225, 0.2);
+    box-shadow: 0 -10px 30px rgba(0, 0, 255, 0.1);
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+    max-width: 1400px;
+    margin: 0 auto 3rem;
+}
+
+.footer-brand {
+    position: relative;
+    z-index: 2;
+}
+
+.hologram-container {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 1.5rem;
+}
+
+.hologram-effect {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    width: calc(100% + 20px);
+    height: calc(100% + 20px);
+    background: radial-gradient(circle, rgba(100, 200, 255, 0.1) 0%, transparent 70%);
+    border-radius: 5px;
+    animation: hologram-pulse 6s infinite alternate;
+}
+
+.company-name {
+    font-size: 1.8rem;
+    font-weight: 700;
+    background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 0.5rem;
+    position: relative;
+    text-shadow: 0 0 10px rgba(79, 172, 254, 0.3);
+}
+
+.company-name span {
+    font-weight: 300;
+}
+
+.tagline {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.social-quantum {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-icon {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    color: #4facfe;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.social-icon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgba(79, 172, 254, 0.3);
+    border-radius: 50%;
+    animation: social-rotate 6s linear infinite;
+}
+
+.social-icon:hover {
+    background: rgba(79, 172, 254, 0.1);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(79, 172, 254, 0.2);
+}
+
+.section-title {
+    font-size: 1.2rem;
+    color: #fff;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.title-underline {
+    position: relative;
+    padding-bottom: 5px;
+}
+
+.title-underline::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50%;
+    height: 2px;
+    background: linear-gradient(90deg, #4facfe 0%, transparent 100%);
+}
+
+.quantum-dot {
+    width: 8px;
+    height: 8px;
+    background: #00f2fe;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #00f2fe;
+    animation: dot-pulse 2s infinite alternate;
+}
+
+.quantum-links {
+    list-style: none;
+}
+
+.quantum-links li {
+    margin-bottom: 0.8rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.quantum-links a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    padding-left: 1rem;
+}
+
+.quantum-links a::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: #4facfe;
+    transition: all 0.3s ease;
+}
+
+.link-particle {
+    position: absolute;
+    left: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 5px;
+    height: 5px;
+    background: #00f2fe;
+    border-radius: 50%;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.quantum-links a:hover {
+    color: #fff;
+    transform: translateX(5px);
+}
+
+.quantum-links a:hover::before {
+    left: -5px;
+    color: #00f2fe;
+}
+
+.quantum-links a:hover .link-particle {
+    left: -15px;
+    opacity: 1;
+}
+
+.terminal-contact {
+    background: rgba(0, 0, 20, 0.3);
+    border: 1px solid rgba(100, 200, 255, 0.1);
+    border-radius: 5px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    font-family: 'Courier New', monospace;
+    position: relative;
+}
+
+.terminal-contact::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(100, 200, 255, 0.5), transparent);
+}
+
+.terminal-line {
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+}
+
+.prompt {
+    color: #00f2fe;
+    margin-right: 0.5rem;
+}
+
+.terminal-contact a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.terminal-contact a:hover {
+    color: #4facfe;
+    text-shadow: 0 0 5px rgba(79, 172, 254, 0.5);
+}
+
+.quantum-btn {
+    background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+    border: none;
+    color: #0a0e17;
+    padding: 0.8rem 1.5rem;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(79, 172, 254, 0.3);
+}
+
+.quantum-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 20px rgba(79, 172, 254, 0.4);
+}
+
+.quantum-btn::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        to bottom right,
+        rgba(255, 255, 255, 0) 45%,
+        rgba(255, 255, 255, 0.3) 50%,
+        rgba(255, 255, 255, 0) 55%
+    );
+    transform: rotate(30deg);
+    animation: btn-shine 3s infinite;
+}
+
+.newsletter-desc {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+
+.quantum-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.input-field {
+    position: relative;
+}
+
+.input-field input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(100, 200, 255, 0.1);
+    border-radius: 5px;
+    color: white;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.input-field input:focus {
+    outline: none;
+    border-color: rgba(79, 172, 254, 0.5);
+    box-shadow: 0 0 10px rgba(79, 172, 254, 0.2);
+}
+
+.input-highlight {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+    transition: width 0.3s ease;
+}
+
+.input-field input:focus ~ .input-highlight {
+    width: 100%;
+}
+
+.copyright-scan {
+    text-align: center;
+    padding: 1.5rem 0 0;
+    position: relative;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.8rem;
+}
+
+.scanline {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(100, 200, 255, 0.5), transparent);
+    animation: scan 8s linear infinite;
+}
+
+.copyright-symbol {
+    color: #4facfe;
+    font-weight: bold;
+}
+
+.randomize {
+    position: relative;
+    display: inline-block;
+}
+
+.randomize::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    white-space: nowrap;
+    animation: randomize-text 12s infinite;
+}
+
+.quantum-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.particle {
+    position: absolute;
+    background: rgba(100, 200, 255, 0.5);
+    border-radius: 50%;
+    filter: blur(1px);
+    animation: particle-float 10s infinite ease-in-out;
+    animation-delay: var(--delay);
+}
+
+/* Animaciones */
+@keyframes hologram-pulse {
+    0% { opacity: 0.3; }
+    50% { opacity: 0.1; transform: scale(1.05); }
+    100% { opacity: 0.3; }
+}
+
+@keyframes social-rotate {
+    0% { transform: rotate(0deg); opacity: 0.3; }
+    50% { opacity: 0.7; }
+    100% { transform: rotate(360deg); opacity: 0.3; }
+}
+
+@keyframes dot-pulse {
+    0% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.2); }
+    100% { opacity: 0.5; transform: scale(1); }
+}
+
+@keyframes btn-shine {
+    0% { transform: rotate(30deg) translate(-30%, -30%); }
+    100% { transform: rotate(30deg) translate(30%, 30%); }
+}
+
+@keyframes scan {
+    0% { top: 0; }
+    100% { top: 100%; }
+}
+
+@keyframes randomize-text {
+    0%, 20% { content: attr(data-text); }
+    25%, 45% { content: "Todos los derechos reservados."; }
+    50%, 70% { content: "Innovación cuántica para un futuro seguro."; }
+    75%, 95% { content: "Tecnología que trasciende dimensiones."; }
+}
+
+@keyframes particle-float {
+    0%, 100% { transform: translate(0, 0); }
+    25% { transform: translate(5px, -5px); }
+    50% { transform: translate(0, -10px); }
+    75% { transform: translate(-5px, -5px); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .footer-brand {
+        text-align: center;
+    }
+    
+    .social-quantum {
+        justify-content: center;
+    }
+    
+    .section-title {
+        justify-content: center;
+    }
+    
+    .title-underline::after {
+        left: 25%;
+    }
+}
+        .social-links {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 0.8rem;
+            flex-wrap: wrap;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: rgba(100, 255, 218, 0.1);
+            color: var(--accent);
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .social-links a:hover {
+            background: var(--accent);
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(100, 255, 218, 0.1);
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.8s ease forwards;
+        }
+        
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+        
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+        
+        .delay-3 {
+            animation-delay: 0.6s;
+        }
+        
+        /* Responsive adjustments */
+        @media (min-width: 576px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .section-subtitle {
+                font-size: 1.8rem;
+            }
+            
+            .publications-container {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            
+            .publication-card {
+                width: calc(50% - 0.75rem);
+            }
+            
+            .footer-content {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            
+            .footer-column {
+                min-width: calc(50% - 1rem);
+            }
+        }
+        
+        @media (min-width: 768px) {
+            .navbar {
+                flex-direction: row;
+            }
+            
+            .logo {
+                margin-bottom: 0;
+            }
+            
+            .nav-links {
+                gap: 1.5rem;
+            }
+            
+            .nav-links a {
+                font-size: 1rem;
+            }
+            
+            .hero {
+                text-align: left;
+                margin-top: 80px;
+            }
+            
+            .hero-content {
+                max-width: 800px;
+                margin-left: 0;
+            }
+            
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            
+            .hero-description {
+                max-width: 600px;
+                margin-left: 0;
+                text-align: left;
+            }
+            
+            .floating-element {
+                display: block;
+            }
+            
+            .element-1 {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .element-2 {
+                width: 300px;
+                height: 300px;
+            }
+            
+            .cta-button {
+                padding: 0.8rem 2rem;
+                font-size: 1rem;
+            }
+            
+            .r-d-section {
+                padding: 3rem;
+            }
+            
+            .project-card {
+                padding: 2rem;
+            }
+            
+            .project-title {
+                font-size: 1.6rem;
+            }
+            
+            .publication-card {
+                width: calc(50% - 1rem);
+            }
+            
+            .footer-column {
+                min-width: calc(33.333% - 1.5rem);
+            }
+        }
+        
+        @media (min-width: 992px) {
+            .hero-title {
+                font-size: 3.2rem;
+            }
+            
+            .section-title {
+                font-size: 2.3rem;
+            }
+            
+            .section-subtitle {
+                font-size: 2rem;
+            }
+            
+            .element-1 {
+                width: 300px;
+                height: 300px;
+            }
+            
+            .element-2 {
+                width: 350px;
+                height: 350px;
+            }
+            
+            .publications-container {
+                gap: 2rem;
+            }
+            
+            .publication-card {
+                width: calc(50% - 1rem);
+            }
+        }
+        
+        @media (min-width: 1200px) {
+            .hero-title {
+                font-size: 3.5rem;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .section-subtitle {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Particle Background -->
+    <div id="particles-js"></div>
+    
+    <!-- Floating Elements -->
+    <div class="floating-element element-1"></div>
+    <div class="floating-element element-2"></div>
+    
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <div class="logo-container">
+                <style>
+    .logo-container {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .company-logo {
+        width: 75px; /* Ajusta según necesites */
+        height: 70px;
+        object-fit: contain;
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+        transition: transform 0.3s ease;
+    }
+    
+    .company-logo:hover {
+        transform: scale(1.1);
+    }
+    
+    .company-name {
+        font-size: 1.3rem;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-weight: 600;
+        color: #ffffff;
+        margin: 0;
+        letter-spacing: -0.5px;
+        position: relative;
+        padding-left: 10px;
+    }
+    
+    /* Opcional: línea decorativa de separación */
+    .company-name::before {
+        content: '';
+        position: absolute;
+        left: -5px;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 60%;
+        width: 1px;
+        background: rgba(0, 0, 0, 0.1);
+    }
+                </style>
+                <img src="imgs/1.png" alt="Logo Nantli-Quantum" class="company-logo">
+                <h1 class="company-name">Nantli-Quantum Technologies.</h1>
+            </div>
+            <br>
+            <div class="nav-links">
+                <a href="#home">Inicio</a>
+                <a href="./index.html">NQT</a>
+                <a href="#r-d">Desarrollo</a>
+                <a href="#publications">Académico</a>
+                <a href="#research">Intereses</a>
+                <a href="#contact">Contacto</a>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content fade-in">
+            <p class="hero-subtitle">Innovación más allá de los límites</p>
+            <h1 class="hero-title">Donde la informática encuentra la vanguardia científica</h1>
+            <p class="hero-description delay-1">
+                En la intersección entre seguridad informática, desarrollo tecnológico e investigación de punta, 
+                creamos soluciones que redefinen lo posible. Nuestra división de I+D está revolucionando industrias 
+                desde la biotecnología hasta la inteligencia artificial.
+            </p>
+            <div class="delay-2">
+                <a href="#r-d" class="cta-button secondary-button">Explora I+D</a>
+                <a href="./index.html" class="cta-button">Volver al sitio principal</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Legal Notice -->
+    <div class="legal-notice">
+        <div class="legal-notice-icon">⚠️</div>
+        <h3>Aviso Legal</h3>
+        <p>
+            <strong>Toda reproducción, distribución, modificación o uso no autorizado</strong> de los proyectos, 
+            investigaciones o información contenida en este sitio, <strong>sin la debida citación de fuente 
+            y autorización previa por escrito</strong> de nuestros representantes legales, constituirá 
+            una violación a los derechos de propiedad intelectual y será susceptible de 
+            <strong>acciones legales</strong> conforme a las leyes mexicanas e internacionales aplicables.
+        </p>
+        <div class="legal-notice-footer">
+            © 2025 Nantli-Quantum Technologies. Todos los derechos reservados.
+        </div>
+    </div>
+
+    <!-- I+D Section -->
+    <section id="r-d">
+        <div class="section-subtitle fade-in">Innovación Disruptiva</div>
+        
+        <div class="r-d-section fade-in delay-1">
+            <div class="project-card">
+                <h3 class="project-title">Dualidad enzimática-térmica</h3>
+                <p class="project-subtitle"></p>
+                <p class="project-description" style="text-align: justify; text-justify: inter-word;">
+                    Se ha demostrado la efectividad técnica y económica de ambas variantes a través de ecuaciones químicas, demostraciones matemáticas modelados y simuladores por lo que nuestro siguiente paso es conseguir una inversión económica factible para trascender fronteras.
+                </p>
+                <p class="project-description" style="text-align: justify; text-justify: inter-word;">
+                    Nuestra investigación en biotecnología ha dado como resultado el desarrollo de una enzima restrictiva 
+                    revolucionaria que transforma los procesos hídricos. Esta innovación no solo reduce el 
+                    consumo de agua en hasta un 90%, sino que crea un sistema de economía circular donde los subproductos 
+                    se convierten en recursos valiosos.
+                </p>
+                <div class="project-highlights">
+                    <div class="highlight-item">
+                        <div class="highlight-icon"><i class="fas fa-check-circle"></i></div>
+                        <div class="highlight-text">Reducción drástica del consumo de agua en procesos industriales</div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-icon"><i class="fas fa-check-circle"></i></div>
+                        <div class="highlight-text">Conversión de residuos en materias primas valiosas</div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-icon"><i class="fas fa-check-circle"></i></div>
+                        <div class="highlight-text">Tecnología escalable para diversos sectores industriales</div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-icon"><i class="fas fa-check-circle"></i></div>
+                        <div class="highlight-text">Economía circular del agua</div>
+                    </div>
+                </div>
+                
+                <p class="project-description" style="text-align: justify; text-justify: inter-word;">
+                   Simultáneamente, en respuesta a los crecientes desafíos energéticos de los data centers de IA generativa, hemos desarrollado 
+                    un modelo gel termodinámico inteligente que redefine la eficiencia en sistemas de enfriamiento. Este material 
+                    innovador adapta sus propiedades en tiempo real según las cargas de trabajo, reduciendo el consumo 
+                    energético mientras aumenta la capacidad de procesamiento diferenciándose de actuales soluciones que dependen totalmente de condiciones óptimas de ambiente
+                </p>
+                <div class="project-highlights">
+                    <div class="highlight-item">
+                        <div class="highlight-icon"><i class="fas fa-check-circle"></i></div>
+                        <div class="highlight-text">80% más eficiente que los sistemas tradicionales</div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-icon"><i class="fas fa-check-circle"></i></div>
+                        <div class="highlight-text">Capacidad de adaptación dinámica</div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-icon"><i class="fas fa-check-circle"></i></div>
+                        <div class="highlight-text">Solución escalable desde pequeños hasta grandes datacenters</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- PDF Viewer Section -->
+        <div class="pdf-viewer-container fade-in delay-2">
+            <h4>Resumen Ejecutivo del Proyecto dualidad enzimática-térmica</h4>
+            <embed src="./files/Proyecto.pdf" type="application/pdf">
+            <a href="./files/Proyecto.pdf" download class="pdf-download">
+                <i class="fas fa-download"></i> Descargar Resumen
+            </a>
+        </div>
+    </section>
+    
+    <!-- Publicaciones Section -->
+    <section id="publications">
+        <div class="section-subtitle fade-in">Reconocimiento Académico</div>
+        
+        <div class="publications-container">
+            <!-- Primer Card (PDF) -->
+            <div class="publication-card fade-in">
+                <div class="publication-preview">
+                    <embed src="./files/La-Inteligencia-Artificial-transformando-la-educacion.pdf" type="application/pdf">
+                </div>
+                <div class="publication-info">
+                    <h4 class="publication-title">La Inteligencia Artificial: transformando la Educación del Futuro</h4>
+                    <span class="publication-status">Publicado</span>
+                    <p class="publicaction-description" style="text-align: justify; text-justify: inter-word;">
+                        Ensayo ganador del Premio de Innovación Educativa del IPN a través de la Dirección de Formación 
+                        e Innovación Educativa. Un análisis profundo sobre cómo la IA está redefiniendo los paradigmas 
+                        educativos y las estrategias para implementarla de manera efectiva.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Segundo Card (JPG) -->
+            <div class="publication-card fade-in delay-1">
+                <div class="publication-preview">
+                    <img src="./imgs/peie2024.png" alt="Certificado del Premio de Innovación Educativa">
+                </div>
+                <div class="publication-info">
+                    <h4 class="publication-title">Mitigando riesgos para salvaguardar México y a sus líderes del futuro... ¿Quién nos protege en línea?</h4>
+                    <span class="publication-status" style="background: rgba(255, 193, 7, 0.1); color: #ffc107;">En proceso de publicación</span>
+                    <p class="publicaction-description" style="text-align: justify; text-justify: inter-word;">
+                        Segundo ensayo ganador consecutivo del Premio de Innovación Educativa del IPN. Explora los 
+                        desafíos de seguridad nacional en la era digital y propone un marco innovador para proteger 
+                        a las futuras generaciones de líderes mexicanos. Se desarrolló simultáneamente cómo el problema de la falta del agua influye en tecnología y liderazgo abordando temas complejos a modo de soluciones como llevar a la práctica desarrollo de ósmosis, etc.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Áreas de Investigación -->
+    <section id="research">
+        <div class="section-subtitle fade-in">Futuro en Desarrollo</div>
+        <div class="r-d-section fade-in delay-1">
+            <div class="project-card">
+                <h3 class="project-title">Nuestras áreas de desarrollo e interés 🚀</h3>
+                <p class="project-description" style="text-align: justify; text-justify: inter-word;">
+                 Actualmente esta start-up no solo busca brindar sus servicios generales en informática si no que también busca contribuir en la ciencia en México más allá de las fronteras es por ello que nuestras áreas de interés se centran en ciencia orientada en ODS en el marco de la agenda 2030 de la ONU así como también demostramos servicio e interés en el sector aeroespacial, aeronáutico y robótica mediante IoT.
+                </p>
+                <p class="project-description" style="text-align: justify; text-justify: inter-word;">
+                   Nos encontramos colaborando con equipos aeronáuticos y aeroespaciales mexicanos pues creemos firmemente en la convicción de que México tiene un gran potencial en esta área, es nuestro CEO Ángel Samuel Reséndiz González quien ha llevado esta vinculación y colaboración, las cuales de momento no pueden ser mostradas para conservar los proyectos bajo su confidencialidad, sin embargo se harán públicos cuando se considere prudente.</p>
+            </div>
+        </div>
+    </section>
+    <!-- Footer Futurista -->
+<footer id="contact" class="quantum-footer">
+    <div class="footer-grid">
+        <!-- Logo y eslogan con efecto holográfico -->
+        <div class="footer-brand fade-in">
+            <div class="hologram-container">
+                <div class="hologram-effect"></div>
+                <h3 class="company-name">Nantli-Quantum <span>Technologies</span></h3>
+            </div>
+            <p class="tagline">Innovando para transformar el futuro digital</p>
+
+        </div>
+        
+        <!-- Menú de áreas con efecto de partículas -->
+        <div class="footer-section fade-in delay-1">
+            <h3 class="section-title"><span class="title-underline">Áreas</span> <span class="quantum-dot"></span></h3>
+            <ul class="quantum-links">
+                <li><a href="./index.html" data-hover="Seguridad Informática"><span class="link-particle"></span>Seguridad Informática</a></li>
+                <li><a href="./index.html" data-hover="Derecho Digital"><span class="link-particle"></span>Derecho Digital</a></li>
+                <li><a href="./index.html" data-hover="Desarrollo Web"><span class="link-particle"></span>Desarrollo Web/App/Desktop</a></li>
+                <li><a href="./index.html" data-hover="Consultoría"><span class="link-particle"></span>Consultoría Tecnológica</a></li>
+                <li><a href="./id.html" data-hover="I+D Cuántico"><span class="link-particle"></span>Investigación y Desarrollo</a></li>
+                
+            </ul>
+        </div>
+        
+        <!-- Contacto con efecto de terminal -->
+        <div class="footer-section fade-in delay-2">
+            <h3 class="section-title"><span class="title-underline">Contacto</span> <span class="quantum-dot"></span></h3>
+            <div class="terminal-contact">
+                <div class="terminal-line">
+                    <span class="prompt">></span> <a href="mailto:nqtechnologies@proton.me">nqtechnologies@proton.me</a>
+                </div>
+              
+            </div>
+        </div>
+        
+
+        </div>
+    </div>
+    
+    <!-- Copyright con efecto de scanning -->
+    <div class="copyright-scan fade-in delay-4">
+        <div class="scanline"></div>
+        <p>
+            <span class="copyright-symbol">©</span> 2025 Nantli-Quantum Technologies. Todos los derechos reservados. 
+        </p>
+    </div>
+    
+    <!-- Efecto de partículas flotantes -->
+    <div class="quantum-particles">
+        <div class="particle" style="--size: 2px; --x: 15%; --y: 30%; --delay: 0s;"></div>
+        <div class="particle" style="--size: 3px; --x: 70%; --y: 15%; --delay: 1s;"></div>
+        <div class="particle" style="--size: 1px; --x: 40%; --y: 60%; --delay: 2s;"></div>
+        <div class="particle" style="--size: 2px; --x: 85%; --y: 45%; --delay: 3s;"></div>
+    </div>
+</footer>
+    
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Particles.js config
+        particlesJS("particles-js", {
+            "particles": {
+                "number": {
+                    "value": 60,
+                    "density": {
+                        "enable": true,
+                        "value_area": 700
+                    }
+                },
+                "color": {
+                    "value": "#64ffda"
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": false,
+                    "anim": {
+                        "enable": false,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                        "enable": false,
+                        "speed": 40,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 130,
+                    "color": "#64ffda",
+                    "opacity": 0.2,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 1.5,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": false,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "grab"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 120,
+                        "line_linked": {
+                            "opacity": 1
+                        }
+                    },
+                    "bubble": {
+                        "distance": 300,
+                        "size": 30,
+                        "duration": 2,
+                        "opacity": 8,
+                        "speed": 3
+                    },
+                    "repulse": {
+                        "distance": 150,
+                        "duration": 0.4
+                    },
+                    "push": {
+                        "particles_nb": 3
+                    },
+                    "remove": {
+                        "particles_nb": 2
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+        
+        // Scroll animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const fadeInObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            fadeElements.forEach(element => {
+                fadeInObserver.observe(element);
+                element.style.opacity = 0;
+                element.style.transform = 'translateY(20px)';
+                element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            });
+        });
+    </script>
+</body>
+</html>
