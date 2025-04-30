@@ -1518,7 +1518,7 @@
                 <li><a href="#portafolio" class="hover-underline">Portafolio</a></li>
                 <li><a href="#programas" class="hover-underline">Programas</a></li>
                 <li><a href="#equipo" class="hover-underline">Equipo</a></li>
-             <!-- Mover el escudo aquí antes de los CTA    <li><a href="#investigacion" class="hover-underline">I+D</a></li> --> 
+            <li><a href="./id.html" class="hover-underline">I+D</a></li> 
                 <li><a href="#contacto" class="hover-underline">Contacto</a></li>
             </ul>
         </nav>
@@ -2590,6 +2590,89 @@
             </div>
         </div>
     </div>
+    
+<div class="r-d-cta">
+    <style>
+        /* Estilos para el CTA de I+D */
+        .r-d-cta {
+            margin: 2rem auto; /* Cambiado a auto para centrar horizontalmente */
+            perspective: 1000px;
+            width: fit-content; /* Ajusta el ancho al contenido */
+            max-width: 90%; /* Evita que sea demasiado ancho en móviles */
+            display: flex;
+            justify-content: center;
+        }
+
+        .rd-link {
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(10, 25, 47, 0.9) 0%, rgba(23, 42, 69, 0.9) 100%);
+            color: #64ffda;
+            padding: 1.5rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(100, 255, 218, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .rd-link:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(100, 255, 218, 0.3);
+        }
+
+        .rd-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(100, 255, 218, 0.1), transparent);
+            transition: 0.5s;
+        }
+
+        .rd-link:hover::before {
+            left: 100%;
+        }
+
+        .rd-main-text {
+            display: block;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            text-align: center; /* Centra el texto */
+        }
+
+        .rd-sub-text {
+            display: block;
+            font-size: 0.9rem;
+            color: #8892b0;
+            font-weight: 400;
+            text-align: center; /* Centra el texto */
+        }
+
+        .rd-icon {
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: transform 0.3s ease;
+        }
+
+        .rd-link:hover .rd-icon {
+            transform: translateY(-50%) translateX(5px);
+        }
+    </style>
+    <a href="./id.html" class="rd-link">
+        <span class="rd-main-text">¿Cómo inovamos?</span>
+        <i class="fas fa-arrow-right rd-icon"></i>
+        <span class="rd-sub-text">Descubre lo que hacemos en I+D</span>
+        <i class="fas fa-arrow-right rd-icon"></i>
+    </a>
+</div>
+
 </section>
 
 
@@ -4430,7 +4513,8 @@
         <div class="evidence-grid">
             
             <!-- Certificación 1 -->
-            <a href="https://www.facebook.com/cecyt3oficial/posts/pfbid0hWoSYXCMwP4wiJa7HLG9ipARAMwnXYiRDxxuMQsNBdiXpvY6kGFCAStxRNk4sgzml" class="evidence-card" target="_blank" data-aos="fade-up" data-aos-delay="100">
+            <a href="https://www.facebook.com/cecyt3oficial/posts/pfbid0hWoSYXCMwP4wiJa7HLG9ipARAMwnXYiRDxxuMQsN
+            BdiXpvY6kGFCAStxRNk4sgzml" class="evidence-card" target="_blank" data-aos="fade-up" data-aos-delay="100">
                 <div class="card-icon">
                     <i class="fas fa-medal"></i>
                 </div>
@@ -4621,6 +4705,9 @@
    
 </section>
 
+
+
+
 <style>
 
     /* Estilo para centrar solo la tarjeta ISO */
@@ -4785,6 +4872,8 @@
     </div>
         
     </section>
+
+
     
     <!-- Font Awesome (usar versión actualizada en producción) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -5103,6 +5192,7 @@
         }
     }
     </style>
+
 
    <!-- HTML -->
 <section id="contacto">
